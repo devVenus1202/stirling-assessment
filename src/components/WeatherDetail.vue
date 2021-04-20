@@ -29,6 +29,10 @@
                 <span>Humidity</span>
                 <span>{{data.main.humidity}}%</span>
             </div>
+            <div class="temperature-info">
+                <span>Wind</span>
+                <span>{{data.wind.speed}}m/s</span>
+            </div>
         </div>
     </div>
 </template>
