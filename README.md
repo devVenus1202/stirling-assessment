@@ -5,6 +5,8 @@
 yarn install
 ```
 
+### Create .env file and Copy and past the content of .env.exmple
+
 ### Compiles and hot-reloads for development
 ```
 yarn run serve
