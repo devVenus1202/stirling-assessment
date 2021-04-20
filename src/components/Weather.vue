@@ -2,16 +2,21 @@
     <div class="weather-content">
         <div>My location</div>
         <div v-if="currentLocation">{{currentLocation.adminArea5}}</div>
+        <vue-google-autocomplete class="input-location" id="input-location" ref="address" v-on:placechanged="getAddressData"></vue-google-autocomplete>
         <weather-detail v-if="weatherData" :data="weatherData"></weather-detail>
     </div>
 </template>
 <script>
 import axios from 'axios';
+import VueGoogleAutocomplete from "vue-google-autocomplete";
 import {getWeatherData} from "../utils"
 import WeatherDetail from './WeatherDetail.vue';
 const MAPQUESTAPI = "https://www.mapquestapi.com/geocoding/v1/reverse?key=TPWvRrsfpgGWBACqqXd94fbDcfVpy2WJ"
 export default {
-    components: { WeatherDetail },
+    components: { 
+        WeatherDetail,
+        VueGoogleAutocomplete
+    },
     data() {
         return {
             currentLocation: null,
@@ -36,7 +41,25 @@ export default {
                 console.log(res)
                 this.weatherData = res.data
             })
+        },
+        getAddressData(addressData, placeResultData, id) {
+            console.log(addressData)
+            console.log(placeResultData);
+            console.log(id)
+            this.setLocation({coords:{latitude:addressData.latitude,longitude:addressData.longitude}})
         }
     },
 }
 </script>
+<style scoped>
+.weather-content {
+    width: 500px;
+    margin: auto;
+}
+.weather-content .input-location {
+    padding: 10px;
+    width: 100%;
+    border-radius: 2px;
+    border: solid 1px #AAA;
+}
+</style>
