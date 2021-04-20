@@ -1,6 +1,6 @@
 <template>
     <div class="weather-content">
-        <div><b>Current location:</b> <span v-if="currentLocation">{{currentLocation.adminArea5}}</span></div>
+        <h1><b>Current location:</b> <span v-if="currentLocation">{{currentLocation.adminArea5}}</span></h1>
         <vue-google-autocomplete class="input-location" id="input-location" ref="address" v-on:placechanged="getAddressData"></vue-google-autocomplete>
         <weather-detail v-if="weatherData" :data="weatherData"></weather-detail>
         <div class="errorMessage" v-if="errorMessage">{{errorMessage}}</div>
@@ -61,12 +61,16 @@ export default {
     width: 500px;
     margin: auto;
     box-sizing: border-box;
+    border-radius: 10px;
+    background-color:white ;
+    padding:20px;
 }
 .weather-content .input-location {
     padding: 10px;
-    width: 100%;
+    width: -webkit-fill-available;
     border-radius: 2px;
     border: solid 1px #AAA;
+    margin: 20px;
 }
 .errorMessage {
     color: red;
